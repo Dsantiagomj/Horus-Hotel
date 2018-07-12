@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import './RoomsPage.dart' as first;
 import './HotelPage.dart' as second;
+import './ChartsPage.dart' as third;
+
 class HomePage extends StatefulWidget{
   HomePageState createState()=>  HomePageState();
 }
-
 
 class HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
   TabController controller;
@@ -46,7 +47,7 @@ class HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
               decoration: new BoxDecoration(
                 image: new DecorationImage(
                   fit: BoxFit.fill,
-                  image: new NetworkImage("https://vignette.wikia.nocookie.net/steamtradingcards/images/c/c0/Waveform_Background_Earth_Horizon.jpg/revision/latest/scale-to-width-down/640?cb=20150404025954")
+                  image:new NetworkImage("https://vignette.wikia.nocookie.net/steamtradingcards/images/c/c0/Waveform_Background_Earth_Horizon.jpg/revision/latest/scale-to-width-down/640?cb=20150404025954")
                 )
               ),
             ),
@@ -55,6 +56,7 @@ class HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
               trailing: new Icon(Icons.arrow_upward),
               onTap: () {
                 Navigator.of(context).pop();
+                Navigator.of(context).pushNamed("/Chart");
               }
             ),
             new ListTile(
