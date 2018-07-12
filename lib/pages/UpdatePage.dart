@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class  Chart extends StatelessWidget {
+class  Update extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        title: new Text("Gráficas"),
+        title: new Text("Actualiza tus datos"),
         backgroundColor: Colors.blueAccent
         ),
       body: new Center(
-        child: new Text("Chart view on development"),
+        child: new Text("Update view on development"),
       ),
     );
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import './RoomsPage.dart' as first;
 import './HotelPage.dart' as second;
-import './ChartsPage.dart' as third;
 
 class HomePage extends StatefulWidget{
   HomePageState createState()=>  HomePageState();
@@ -52,23 +51,49 @@ class HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
               ),
             ),
             new ListTile(
-              title: new Text("First Page"),
-              trailing: new Icon(Icons.arrow_upward),
+              title: new Text("Gráficas"),
+              trailing: new Icon(Icons.pie_chart),
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).pushNamed("/Chart");
               }
             ),
             new ListTile(
-              title: new Text("Second Page"),
-              trailing: new Icon(Icons.arrow_downward),
+              title: new Text("Mis Hoteles"),
+              trailing: new Icon(Icons.local_convenience_store),
               onTap: () {
                 Navigator.of(context).pop();
+                Navigator.of(context).pushNamed("/HotelList");
+              }
+            ),
+            new ListTile(
+              title: new Text("Actualizar datos"),
+              trailing: new Icon(Icons.account_box),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pushNamed("/Update");
+              }
+            ),
+            new ListTile(
+              title: new Text("Configuración"),
+              trailing: new Icon(Icons.settings),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pushNamed("/Settings");
               }
             ),
             new Divider(),
             new ListTile(
-              title: new Text("Close"),
+              title: new Text("Informes"),
+              trailing: new Icon(Icons.report_problem),
+            ),
+            new ListTile(
+              title: new Text("Alertas"),
+              trailing: new Icon(Icons.report_problem),
+            ),
+            new Divider(),
+            new ListTile(
+              title: new Text("Salir"),
               trailing: new Icon(Icons.close),
               onTap:(){
                 Navigator.of(context).pop();
