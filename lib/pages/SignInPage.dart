@@ -46,7 +46,7 @@ class _SignInState extends State<SignIn> {
           minWidth: 200.0,
           height: 42.0,
           onPressed: () {
-            Navigator.of(context).pushNamed("/HotelHomePage");
+            Navigator.of(context).pushNamed("/HotelList");
           },
           color: Colors.blueAccent,
           child: Text(
@@ -63,7 +63,7 @@ class _SignInState extends State<SignIn> {
             padding: EdgeInsets.only(left: 24.0, right: 24.0, top: 10.0),
             children: <Widget>[
               logo,
-              SizedBox(height: 75.0),
+              SizedBox(height: 35.0),
               email,
               SizedBox(height: 8.0),
               password,

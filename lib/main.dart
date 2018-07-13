@@ -5,6 +5,7 @@ import './pages/ChartsPage.dart';
 import './pages/HotelListPage.dart';
 import './pages/UpdatePage.dart';
 import './pages/SettingsPage.dart';
+import './pages/HotelCreatePage.dart';
 
 void main() {
   runApp(new MaterialApp(
@@ -12,10 +13,11 @@ void main() {
       home: Login(),
       routes: <String, WidgetBuilder>{
         "/Login": (BuildContext context) => new Login(),
-        "/HotelHomePage": (BuildContext context) => new HotelHomePage(),
+        "/HotelHome": (BuildContext context) => new HotelHomePage(),
         "/Chart": (BuildContext context) => new Chart(),
         "/HotelList": (BuildContext context) => new HotelList(),
         "/Update": (BuildContext context) => new Update(),
         "/Settings": (BuildContext context) => new Settings(),
+        "/HotelCreate": (BuildContext context) => new HotelCreate()
       }));
 }

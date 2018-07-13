@@ -1,54 +1,63 @@
 import 'package:flutter/material.dart';
 
-class SignUp extends StatefulWidget {
+class CreateHotel extends StatefulWidget {
   @override
-  _SignUpState createState() => _SignUpState();
+  _CreateHotelState createState() => _CreateHotelState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _CreateHotelState extends State<CreateHotel> {
   @override
   Widget build(BuildContext context) {
-    final fullname = TextFormField(
+    final hotelName = TextFormField(
       keyboardType: TextInputType.text,
       autofocus: false,
       decoration: InputDecoration(
-          hintText: "Nombre Completo",
+          hintText: "Nombre del hotel",
           contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
           border:
               UnderlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
-    final email = TextFormField(
-      keyboardType: TextInputType.emailAddress,
-      autofocus: false,
-      decoration: InputDecoration(
-          hintText: "Email",
-          contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-          border:
-              UnderlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
-    );
-    final cellphone = TextFormField(
+    final nit = TextFormField(
       keyboardType: TextInputType.number,
       autofocus: false,
       decoration: InputDecoration(
-          hintText: "Celular",
+          hintText: "Nit",
           contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
           border:
               UnderlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
-    final username = TextFormField(
+    final address = TextFormField(
       keyboardType: TextInputType.text,
       autofocus: false,
       decoration: InputDecoration(
-          hintText: "Usuario",
+          hintText: "Dirección",
           contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
           border:
               UnderlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
-    final password = TextFormField(
+    final phoneNumber = TextFormField(
+      keyboardType: TextInputType.number,
       autofocus: false,
-      obscureText: true,
       decoration: InputDecoration(
-          hintText: "Contraseña",
+          hintText: "Teléfono",
+          contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+          border:
+              UnderlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+    );
+    final city = TextFormField(
+      keyboardType: TextInputType.text,
+      autofocus: false,
+      decoration: InputDecoration(
+          hintText: "Ciudad",
+          contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+          border:
+              UnderlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+    );
+    final average = TextFormField(
+      keyboardType: TextInputType.number,
+      autofocus: false,
+      decoration: InputDecoration(
+          hintText: "Promedio de ventas",
           contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
           border:
               UnderlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
@@ -62,17 +71,7 @@ class _SignUpState extends State<SignUp> {
           border:
               UnderlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
-    final code = TextFormField(
-      keyboardType: TextInputType.number,
-      autofocus: false,
-      decoration: InputDecoration(
-          hintText: "Código",
-          contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-          border:
-              UnderlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
-    );
-
-    final sigupButton = Padding(
+    final createButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 25.0),
       child: Material(
         borderRadius: BorderRadius.circular(30.0),
@@ -86,7 +85,7 @@ class _SignUpState extends State<SignUp> {
           },
           color: Colors.blueAccent,
           child: Text(
-            "Registrarse",
+            "Crear Hotel",
             style: TextStyle(color: Colors.white),
           ),
         ),
@@ -97,21 +96,21 @@ class _SignUpState extends State<SignUp> {
         child: new ListView(
           padding: EdgeInsets.only(left: 24.0, right: 24.0, top: 30.0),
           children: <Widget>[
-            fullname,
+            hotelName,
             SizedBox(height: 30.0),
-            email,
+            nit,
             SizedBox(height: 30.0),
-            cellphone,
+            address,
             SizedBox(height: 30.0),
-            username,
+            phoneNumber,
             SizedBox(height: 30.0),
-            password,
+            city,
+            SizedBox(height: 30.0),
+            average,
             SizedBox(height: 30.0),
             pin,
             SizedBox(height: 30.0),
-            code,
-            SizedBox(height: 30.0),
-            sigupButton
+            createButton
           ],
         ),
       ),

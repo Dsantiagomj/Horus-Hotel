@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './HotelRoomsPage.dart' as first;
-import './HotelStatisticsPage.dart' as second;
+import './hotel/HotelRoomsPage.dart' as first;
+import './hotel/HotelStatisticsPage.dart' as second;
 
 class HotelHomePage extends StatefulWidget {
   HotelHomePageState createState() => HotelHomePageState();
@@ -81,15 +81,6 @@ class HotelHomePageState extends State<HotelHomePage>
                     Navigator.of(context).pop();
                     Navigator.of(context).pushNamed("/Settings");
                   }),
-              new Divider(),
-              new ListTile(
-                title: new Text("Informes"),
-                trailing: new Icon(Icons.report_problem),
-              ),
-              new ListTile(
-                title: new Text("Alertas"),
-                trailing: new Icon(Icons.report_problem),
-              ),
               new Divider(),
               new ListTile(
                   title: new Text("Salir"),
