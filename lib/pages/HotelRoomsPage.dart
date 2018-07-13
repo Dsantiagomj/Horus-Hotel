@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class  Hotel extends StatelessWidget {
+class HotelRooms extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: new Center(
-        child: new Icon(Icons.local_convenience_store, size: 150.0, color: Colors.brown),
+        child: new Icon(Icons.local_hotel, size: 150.0, color: Colors.brown),
       ),
     );
   }
