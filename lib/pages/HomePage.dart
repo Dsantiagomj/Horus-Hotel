@@ -36,11 +36,11 @@ class HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
         child: new ListView(
           children: <Widget>[
             new UserAccountsDrawerHeader(
-              accountName: new Text("Gustavo Morales"),
-              accountEmail: new Text("gmoralesc@gmail.com"),
+              accountName: new Text("Username"),
+              accountEmail: new Text("user@email.com"),
               currentAccountPicture: new GestureDetector(
                 child: new CircleAvatar(
-                  backgroundImage: new NetworkImage("https://avatars0.githubusercontent.com/u/760122?s=400&v=4"),
+                  backgroundImage: new NetworkImage("http://tnfu.ac.in/img/profile/160439default_profile_pic.jpg"),
                 ),
               ),
               decoration: new BoxDecoration(
@@ -60,7 +60,7 @@ class HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
             ),
             new ListTile(
               title: new Text("Mis Hoteles"),
-              trailing: new Icon(Icons.local_convenience_store),
+              trailing: new Icon(Icons.home),
               onTap: () {
                 Navigator.of(context).pop();
                 Navigator.of(context).pushNamed("/HotelList");
