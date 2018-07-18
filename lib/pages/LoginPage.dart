@@ -26,7 +26,7 @@ class LoginState extends State<Login> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        title: new Text("Bienvenido(a): \n Horus Hotel app"),
+        title: new Text("Horus Hotel app"),
         backgroundColor: Colors.blueAccent,
         bottom: new TabBar(
           controller: controller,

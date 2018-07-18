@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:device_id/device_id.dart';
 import 'package:http/http.dart' as http;
-import 'package:crypto/crypto.dart';
 
 import 'dart:async';
 import 'dart:convert';
@@ -18,20 +16,23 @@ class _SignInState extends State<SignIn> {
         Uri.encodeFull("http://35.203.0.214/Hoteles_server/index/Login"),
         body: {
           "uuid": _deviceid,
-          "usuario": "",
-          "clave": ""
+          "usuario": controller.text,
+          "clave": controller2.text
         },
         headers: {
           "Accept": "application/json",
         });
-    print(response.statusCode);
-    print(response.body);
-    print(md5.convert(utf8.encode(password)));
+    // print(response.body);
+    if (response.statusCode == 200 && response.body != "null") {
+      Map<dynamic, dynamic> list = (JSON.decode(response.body)).elementAt(0);
+      if (list.containsKey('idusuario')) {
+        // print("usuario : ${list['nombrecompleto']} se logueo");
+        Navigator.of(context).pushNamed("/HotelList");
+      }
+    }
   }
 
   String _deviceid = 'Unknown';
-  String user = '';
-  String password = '';
 
   @override
   void initState() {
@@ -51,6 +52,16 @@ class _SignInState extends State<SignIn> {
     });
   }
 
+  TextEditingController controller = new TextEditingController();
+  TextEditingController controller2 = new TextEditingController();
+
+  @override
+  void dispose() {
+    controller.dispose();
+    controller2.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final logo = Hero(
@@ -63,12 +74,8 @@ class _SignInState extends State<SignIn> {
     );
 
     final username = TextFormField(
+      controller: controller,
       keyboardType: TextInputType.text,
-      onFieldSubmitted: (String str) {
-        setState(() {
-          user = str;
-        });
-      },
       autofocus: false,
       decoration: InputDecoration(
           hintText: "Usuario",
@@ -78,11 +85,7 @@ class _SignInState extends State<SignIn> {
               UnderlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
     final password = TextFormField(
-      onFieldSubmitted: (String password) {
-        setState(() {
-          password = password;
-        });
-      },
+      controller: controller2,
       autofocus: false,
       obscureText: true,
       decoration: InputDecoration(
@@ -102,8 +105,8 @@ class _SignInState extends State<SignIn> {
         child: MaterialButton(
           minWidth: 200.0,
           height: 42.0,
-          onPressed: getData,
           color: Colors.blueAccent,
+          onPressed: getData,
           child: Text(
             "Iniciar Sesión",
             style: TextStyle(color: Colors.white),
@@ -112,7 +115,7 @@ class _SignInState extends State<SignIn> {
       ),
     );
 
-    return Container(
+    return Form(
       child: new Center(
         child: ListView(
             padding: EdgeInsets.only(left: 24.0, right: 24.0, top: 10.0),
