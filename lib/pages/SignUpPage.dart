@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:device_id/device_id.dart';
+import 'package:http/http.dart' as http;
+
+import 'dart:async';
+import 'dart:convert';
 
 class SignUp extends StatefulWidget {
   @override
@@ -6,9 +11,78 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  Future<String> register() async {
+    final response = await http.post(
+        Uri.encodeFull("http://35.203.0.214/Hoteles_server/index/Registrar"),
+        headers: {
+          "Accept": "application/json"
+        },
+        body: {
+          "uuid": _deviceid,
+          "pin": pinController.text,
+          "clave": passwordController.text,
+          "codigo": codeController.text,
+          "nombre": nameController.text,
+          "usuario": usernameController.text,
+          "email": emailController.text,
+          "celular": cellphoneController.text,
+        });
+    response.body;
+    if (response.statusCode == 200 && response.body == "[2]") {
+      print("Pin inexistente");
+    } else if (response.statusCode == 200 && response.body == "[1]") {
+      print("Tipo de usuario no válido");
+    } else if (response.statusCode == 200 &&
+        response.body != "[2]" &&
+        response.body != "[1]") {
+      Navigator.of(context).pushNamed("/HotelList");
+    }
+  }
+
+  String _deviceid = 'Unknown';
+
+  @override
+  void initState() {
+    super.initState();
+    initDeviceId();
+  }
+
+  Future<void> initDeviceId() async {
+    String deviceid;
+
+    deviceid = await DeviceId.getID;
+
+    if (!mounted) return;
+
+    setState(() {
+      _deviceid = deviceid;
+    });
+  }
+
+  TextEditingController nameController = new TextEditingController();
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController cellphoneController = new TextEditingController();
+  TextEditingController usernameController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
+  TextEditingController pinController = new TextEditingController();
+  TextEditingController codeController = new TextEditingController();
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    cellphoneController.dispose();
+    usernameController.dispose();
+    passwordController.dispose();
+    pinController.dispose();
+    codeController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final fullname = TextFormField(
+      controller: nameController,
       keyboardType: TextInputType.text,
       autofocus: false,
       decoration: InputDecoration(
@@ -18,6 +92,7 @@ class _SignUpState extends State<SignUp> {
               UnderlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
     final email = TextFormField(
+      controller: emailController,
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
       decoration: InputDecoration(
@@ -27,7 +102,8 @@ class _SignUpState extends State<SignUp> {
               UnderlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
     final cellphone = TextFormField(
-      keyboardType: TextInputType.number,
+      controller: cellphoneController,
+      keyboardType: TextInputType.text,
       autofocus: false,
       decoration: InputDecoration(
           hintText: "Celular",
@@ -36,6 +112,7 @@ class _SignUpState extends State<SignUp> {
               UnderlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
     final username = TextFormField(
+      controller: usernameController,
       keyboardType: TextInputType.text,
       autofocus: false,
       decoration: InputDecoration(
@@ -45,6 +122,7 @@ class _SignUpState extends State<SignUp> {
               UnderlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
     final password = TextFormField(
+      controller: passwordController,
       autofocus: false,
       obscureText: true,
       decoration: InputDecoration(
@@ -54,7 +132,8 @@ class _SignUpState extends State<SignUp> {
               UnderlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
     final pin = TextFormField(
-      keyboardType: TextInputType.number,
+      controller: pinController,
+      keyboardType: TextInputType.text,
       autofocus: false,
       decoration: InputDecoration(
           hintText: "Pin",
@@ -63,7 +142,8 @@ class _SignUpState extends State<SignUp> {
               UnderlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
     final code = TextFormField(
-      keyboardType: TextInputType.number,
+      controller: codeController,
+      keyboardType: TextInputType.text,
       autofocus: false,
       decoration: InputDecoration(
           hintText: "Código",
@@ -81,9 +161,7 @@ class _SignUpState extends State<SignUp> {
         child: MaterialButton(
           minWidth: 200.0,
           height: 42.0,
-          onPressed: () {
-            Navigator.of(context).pushNamed("/HotelList");
-          },
+          onPressed: register,
           color: Colors.blueAccent,
           child: Text(
             "Registrarse",

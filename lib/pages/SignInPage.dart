@@ -22,7 +22,7 @@ class _SignInState extends State<SignIn> {
         headers: {
           "Accept": "application/json",
         });
-    // print(response.body);
+    print(response.body);
     if (response.statusCode == 200 && response.body != "null") {
       Map<dynamic, dynamic> list = (JSON.decode(response.body)).elementAt(0);
       if (list.containsKey('idusuario')) {
